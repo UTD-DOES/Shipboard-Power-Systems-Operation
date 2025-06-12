@@ -1,96 +1,144 @@
-# Non Intrusive Load Monitoring in Shipboard Power Systems
-This project implements a NILM model using a Convolutional Neural Network (CNN) to process time-series data from simulated electrical systems. The dataset is preprocessed with the SMOTE (Synthetic Minority Over-sampling Technique) algorithm to handle class imbalance effectively.
+# 🚢 Intelligent Monitoring and Control of Shipboard Power Systems
 
+This repository presents a suite of machine learning and reinforcement learning approaches for:
 
-Data Handling:
+- **Non-Intrusive Load Monitoring (NILM)**
+- **Fault Detection**
+- **Network Reconfiguration**
 
-Loads time-series data from MATLAB .mat files representing simulated electrical system outputs.
-Combines multi-source datasets into a structured 3D tensor for CNN processing.
-Class Imbalance Handling:
+These methods are designed to enhance the monitoring, classification, and control of next-generation shipboard power systems using CNNs, GNNs, and RL.
 
-Utilizes the SMOTE algorithm to generate balanced datasets by oversampling minority classes.
+---
 
-Model Architecture:
+## 📌 Project Modules
 
-A 1D Convolutional Neural Network (CNN) with:
-Conv1D for feature extraction.
-MaxPooling for dimensionality reduction.
-Dense layers for classification.
-A final softmax activation for multi-class output.
-Training and Evaluation:
+### 🔌 1. Non-Intrusive Load Monitoring (NILM)
 
-Splits the dataset into training and testing subsets.
-Trains the model using the Adam optimizer and categorical crossentropy loss.
-Evaluates model accuracy and generates confusion matrices for detailed performance analysis.
-Visualization:
+Implements a 1D Convolutional Neural Network (CNN) to classify loads from time-series electrical data. Class imbalance is addressed using the SMOTE algorithm.
 
-Visualizes data distribution across classes before and after oversampling.
-Generates heatmaps for confusion matrices to provide insights into classification performance.
+#### 🔧 Features
 
-Reference: 
+- **Data Handling**:
+  - Loads `.mat` files simulating shipboard power system signals.
+  - Combines multi-source data into a 3D tensor for CNN input.
 
-Senemmar, S. and Zhang, J., Wavelet-based Convolutional Neural Network for Non-Intrusive Load Monitoring of Next Generation Shipboard Power Systems, Measurement: Sensors, Vol. 35, 2024, pp. 101298. 
+- **Class Imbalance**:
+  - Uses **SMOTE** (Synthetic Minority Over-sampling Technique) for balancing datasets.
 
+- **Model Architecture**:
+  - 1D CNN consisting of:
+    - `Conv1D` layers for temporal feature extraction.
+    - `MaxPooling` layers to reduce dimensionality.
+    - Fully connected `Dense` layers and `Softmax` for multi-class output.
 
-# Non Intrusive Fault Detection in Shipboard Power Systems
+- **Training & Evaluation**:
+  - Trained using the **Adam** optimizer with **categorical crossentropy** loss.
+  - Accuracy and confusion matrix evaluation.
 
-This part demonstrates the implementation of a Graph Neural Network (GNN) for fault classification using the Spektral library. It processes tabular data, constructs a graph structure, and applies graph convolutional layers to classify the data effectively.
+- **Visualization**:
+  - Class distribution plots (before and after SMOTE).
+  - Confusion matrix heatmaps.
 
-Data Preprocessing:
+#### 📖 Reference
 
-Reads tabular data from a CSV file.
-Normalizes input features using StandardScaler.
-Handles class imbalance with RandomOverSampler.
-Graph Construction:
+Senemmar, S. and Zhang, J., *Wavelet-based Convolutional Neural Network for Non-Intrusive Load Monitoring of Next Generation Shipboard Power Systems*, **Measurement: Sensors**, Vol. 35, 2024, pp. 101298.  
+[DOI Link](https://doi.org/10.1016/j.measen.2024.101298)
 
-Constructs an adjacency matrix .
-Encodes the dataset into a graph format suitable for GNN processing using Spektral's Graph and Dataset classes.
-Graph Neural Network Architecture:
+---
 
-Built using Spektral's GCNConv layers with the following structure:
-Two graph convolution layers with ReLU activation.
-Dropout layers to prevent overfitting.
-A fully connected dense layer with softmax activation for multi-class classification.
-Model Training and Evaluation:
+### ⚠️ 2. Non-Intrusive Fault Detection
 
-Compiles the GNN model with the Adam optimizer and categorical crossentropy loss.
-Trains the model with a validation split and plots the training/validation accuracy and loss curves.
-Evaluates the model on a test set and generates a confusion matrix to visualize performance.
-Visualization:
+Implements a **Graph Neural Network (GNN)** using the Spektral library for fault classification from tabular data encoded as graphs.
 
-Heatmap for the confusion matrix to analyze classification results.
-Plots training and validation metrics over epochs.
+#### 🔧 Features
 
-Reference: 
+- **Data Preprocessing**:
+  - Loads and normalizes CSV tabular data with `StandardScaler`.
+  - Balances class distribution using `RandomOverSampler`.
 
-Senemmar, S., Jacob, R. A. and Zhang, J., Non-Intrusive Fault Detection in Shipboard Power Systems using Wavelet Graph Neural Networks, Measurement: Energy, Vol. 3, 2024, pp. 100009. 
+- **Graph Construction**:
+  - Constructs adjacency matrix.
+  - Converts dataset into graphs using `Spektral`'s `Graph` and `Dataset` APIs.
 
-# Network Reconfiguration in Shipboard Power Systems
-This part implements a reinforcement learning (RL) approach for reconfiguring shipboard power systems. It utilizes a graph-based representation of the shipboard power system and employs the Proximal Policy Optimization (PPO) algorithm to optimize the system's configuration.
+- **Model Architecture**:
+  - Two `GCNConv` layers with ReLU activation.
+  - Dropout layers for regularization.
+  - Final `Dense` + `Softmax` output layer.
 
-Key Features:
+- **Training & Evaluation**:
+  - Trained with **Adam** optimizer and **categorical crossentropy**.
+  - Accuracy/loss metrics, validation curves, and confusion matrix.
 
-Simulink Integration: Uses MATLAB engine to interface with a Simulink model of a two-zone Medium Voltage DC (MVDC) shipboard power system.
-Custom Gym Environment: Implements a custom OpenAI Gym environment (ShipEnvironment) to simulate the shipboard power system.
-PPO Agent: Implements a PPO agent with separate actor and critic networks for learning optimal reconfiguration strategies.
-Dynamic Action Space: Utilizes a binary action space to control various switches and components in the power system.
-Reward Function: Incorporates a reward function based on generator power outputs, bus voltages, and load powers.
+- **Visualization**:
+  - Confusion matrix heatmap.
+  - Training/validation performance curves.
 
-Visualization: 
+#### 📖 Reference
 
-Includes plotting functionality to track training progress, including rewards and losses.
-Files
-pyinterface.py: Handles the interface between Python and MATLAB/Simulink, including the custom Gym environment.
-TrainingPPO.py: Implements the PPO algorithm and training loop for the reconfiguration task.
+Senemmar, S., Jacob, R. A., and Zhang, J., *Non-Intrusive Fault Detection in Shipboard Power Systems using Wavelet Graph Neural Networks*, **Measurement: Energy**, Vol. 3, 2024, pp. 100009.  
+[DOI Link](https://doi.org/10.1016/j.mee.2024.100009)
 
-Usage:
-This project is designed for researchers and engineers working on intelligent control and optimization of shipboard power systems. It demonstrates how reinforcement learning can be applied to complex, graph-based power system reconfiguration problems.
+---
 
-Requirements:
+### 🔄 3. Network Reconfiguration via Reinforcement Learning
 
-Python 3.x
-TensorFlow
-OpenAI Gym
-MATLAB Engine for Python
-NumPy
-Matplotlib
+Applies **Reinforcement Learning (RL)** using **Proximal Policy Optimization (PPO)** to dynamically reconfigure shipboard power systems modeled in Simulink.
+
+#### 🔧 Key Features
+
+- **Simulink Integration**:
+  - Uses MATLAB Engine API for Python to interface with a two-zone MVDC Simulink model.
+
+- **Custom Gym Environment**:
+  - Implements an `OpenAI Gym`-compatible environment (`ShipEnvironment`) for simulation-based control.
+
+- **PPO Agent**:
+  - Actor-critic PPO agent.
+  - Binary action space for controlling breakers, switches, and converters.
+
+- **Reward Function**:
+  - Designed to optimize generator power, bus voltage stability, and load service.
+
+- **Visualization**:
+  - Plots cumulative rewards and training losses.
+
+#### 📁 Key Files
+
+- `pyinterface.py`: Interface with MATLAB/Simulink and defines environment logic.
+- `TrainingPPO.py`: Implements PPO training loop.
+
+---
+
+## 💻 Requirements
+
+- Python 3.x  
+- TensorFlow  
+- Spektral  
+- OpenAI Gym  
+- Scikit-learn  
+- NumPy, Pandas, Matplotlib  
+- MATLAB Engine API for Python
+
+---
+
+## 👨‍🔬 Target Audience
+
+This repository is intended for:
+
+- Researchers in energy systems and smart ships.
+- Engineers working on intelligent control and fault detection.
+- Developers applying ML/RL to cyber-physical systems.
+
+---
+
+## 📬 Contact
+
+For questions or collaboration, please contact:
+
+**Dr. Jie Zhang**  
+The University of Texas at Dallas  
+[Research Website](https://personal.utdallas.edu/~jiezhang/)  
+
+---
+
+Let me know if you'd like badges, CI/CD instructions, example scripts, or installation steps added!
