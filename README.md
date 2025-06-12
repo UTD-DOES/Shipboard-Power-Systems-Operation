@@ -28,6 +28,7 @@ Visualizes data distribution across classes before and after oversampling.
 Generates heatmaps for confusion matrices to provide insights into classification performance.
 
 Reference: 
+
 Senemmar, S. and Zhang, J., Wavelet-based Convolutional Neural Network for Non-Intrusive Load Monitoring of Next Generation Shipboard Power Systems, Measurement: Sensors, Vol. 35, 2024, pp. 101298. 
 
 
@@ -61,6 +62,7 @@ Heatmap for the confusion matrix to analyze classification results.
 Plots training and validation metrics over epochs.
 
 Reference: 
+
 Senemmar, S., Jacob, R. A. and Zhang, J., Non-Intrusive Fault Detection in Shipboard Power Systems using Wavelet Graph Neural Networks, Measurement: Energy, Vol. 3, 2024, pp. 100009. 
 
 # Network Reconfiguration in Shipboard Power Systems
