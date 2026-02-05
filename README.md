@@ -87,7 +87,7 @@ Applies **Reinforcement Learning (RL)** using **Proximal Policy Optimization (PP
 #### 🔧 Key Features
 
 - **Simulink Integration**:
-  - Uses MATLAB Engine API for Python to interface with a two-zone MVDC Simulink model.
+  - Uses MATLAB Engine API for Python to interface with a four-zone MVDC Simulink model.
 
 - **Custom Gym Environment**:
   - Implements an `OpenAI Gym`-compatible environment (`ShipEnvironment`) for simulation-based control.
